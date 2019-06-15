@@ -1,0 +1,8 @@
+
+
+SET(LIBNAME ScreenInfo)
+SET(SOURCES ScreenInfo.hpp ScreenInfo.cpp)
+
+ADD_LIBRARY(${LIBNAME} ${SOURCES})
+
+ADD_SUBDIRECTORY(Test)
