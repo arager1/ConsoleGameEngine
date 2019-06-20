@@ -3,7 +3,7 @@
 
 #include "AbstractState.hpp"
 
-namespace Game
+namespace Engine
 {
 
 class AbstractEvent;

@@ -5,7 +5,7 @@
 #include "AbstractEvent.hpp"
 #include "InitState.hpp"
 
-namespace Game
+namespace Engine
 {
 
 
@@ -27,10 +27,10 @@ public:
 
 	}
 
-	StateMachine(const StateMachine& other) = delete;
-	StateMachine(StateMachine&& other) = delete;
-	StateMachine& operator=(const StateMachine&) = delete;
-	StateMachine& operator=(StateMachine&&) = delete;
+	StateMachine(const StateMachine& other) = default;
+	StateMachine(StateMachine&& other) = default;
+	StateMachine& operator=(const StateMachine&) = default;
+	StateMachine& operator=(StateMachine&&) = default;
 	~StateMachine() = default;
 
 	inline Status signal(std::unique_ptr<AbstractEvent> event)
@@ -42,9 +42,9 @@ public:
 		return ((temp == m_currentState) ? Status::Idle : Status::Transition);
 	}
 
-	inline std::shared_ptr<AbstractState> getCurrentState()
+	inline std::shared_ptr<const AbstractState> getCurrentState()
 	{
-		return std::move(m_currentState);
+		return m_currentState;
 	}
 
 private:

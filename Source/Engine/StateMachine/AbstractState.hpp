@@ -3,7 +3,7 @@
 
 #include <memory>
 
-namespace Game
+namespace Engine
 {
 
 class AbstractEvent;

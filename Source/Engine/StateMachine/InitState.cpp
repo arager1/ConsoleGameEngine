@@ -1,7 +1,7 @@
 #include "InitState.hpp"
 
 
-namespace Game
+namespace Engine
 {
 	
 
