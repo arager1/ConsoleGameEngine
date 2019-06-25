@@ -6,8 +6,8 @@ SET(SOURCES Fraction.hpp Fraction.cpp)
 ADD_LIBRARY(${LIBNAME} ${SOURCES})
 
 TARGET_INCLUDE_DIRECTORIES(${LIBNAME} PUBLIC 
-						   ${CMAKE_SOURCE_DIR}/IntegralMath/IntegerInfo 
-						   ${CMAKE_SOURCE_DIR}/IntegralMath/IntegralFunctions)
+						   ${CMAKE_SOURCE_DIR}/Source/IntegralMath/IntegerInfo 
+						   ${CMAKE_SOURCE_DIR}/Source/IntegralMath/IntegralFunctions)
 
 TARGET_LINK_LIBRARIES(${LIBNAME} IntegerInfo IntegralFunctions)
 

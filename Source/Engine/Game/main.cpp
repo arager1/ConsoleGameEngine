@@ -35,7 +35,8 @@ private:
 int main()
 {	
 	{	// Game is constructed
-		std::unique_ptr<Engine::AbstractGame> game = std::move(IntegralMath::PointerLogic::makeUnique<Engine::ConsoleGame>());
+		std::unique_ptr<Engine::AbstractGame> game = std::move(
+			IntegralMath::PointerLogic::makeUnique<Engine::ConsoleGame>());
 
 		game->init();
 

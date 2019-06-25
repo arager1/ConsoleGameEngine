@@ -22,7 +22,7 @@ cmake_retval=$?
 
 if (( $cmake_retval == 0 )); then
 	echo "Building source"
-	make 
+	make VERBOSE=1
 else
 	echo "CMake failure"
 fi

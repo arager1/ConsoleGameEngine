@@ -3,7 +3,7 @@
 ADD_EXECUTABLE(TestFractionExceptionAccuracy testExceptionAccuracy.cpp)
 
 TARGET_INCLUDE_DIRECTORIES(TestFractionExceptionAccuracy PUBLIC 
-						   ${CMAKE_SOURCE_DIR}/IntegralMath/Fraction)
+						   ${CMAKE_SOURCE_DIR}/Source/IntegralMath/Fraction)
 
 TARGET_LINK_LIBRARIES(TestFractionExceptionAccuracy 
 					  Fraction
@@ -19,7 +19,7 @@ ADD_TEST(NAME FractionExceptionAccuracy COMMAND TestFractionExceptionAccuracy)
 ADD_EXECUTABLE(TestFractionReduction testReduction.cpp)
 
 TARGET_INCLUDE_DIRECTORIES(TestFractionReduction PUBLIC 
-						   ${CMAKE_SOURCE_DIR}/IntegralMath/Fraction)
+						   ${CMAKE_SOURCE_DIR}/Source/IntegralMath/Fraction)
 
 TARGET_LINK_LIBRARIES(TestFractionReduction 
 					  Fraction
