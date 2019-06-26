@@ -5,29 +5,8 @@
 
 #include <memory>
 
-///// TEMP
-#include <iostream>
-
 namespace Engine
 {
-
-class ConsoleGame : public Engine::AbstractGame
-{
-public:
-	void init()
-	{
-		std::cout << "ConsoleGame Init" << std::endl;
-	}
-	Status run()
-	{
-		std::cout << "ConsoleGame Run: " << m_count << std::endl;
-		m_count++;
-		if (m_count >= 10) return Status::Quit;
-		else return Status::Ok;
-	}
-private:
-	int m_count{0};
-};
 
 
 }
