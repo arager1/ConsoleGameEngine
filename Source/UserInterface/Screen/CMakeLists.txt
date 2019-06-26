@@ -6,7 +6,7 @@ SET(SOURCES Screen.hpp Screen.cpp)
 ADD_LIBRARY(${LIBNAME} ${SOURCES})
 
 TARGET_INCLUDE_DIRECTORIES(${LIBNAME} PUBLIC 
-						   ${CMAKE_SOURCE_DIR}/Source/UserInterface/ScreenInfo)
+						   ${PROJECT_SOURCE_DIR}/Source/UserInterface/ScreenInfo)
 
 TARGET_LINK_LIBRARIES(${LIBNAME} ScreenInfo)
 
