@@ -1,6 +1,6 @@
 
 
-#include "AbstractGame.hpp"
+#include "ConsoleGame.hpp"
 #include "PointerLogic.hpp"
 
 #include <memory>
@@ -8,6 +8,7 @@
 namespace Engine
 {
 
+// class ConsoleGame;
 
 }
 

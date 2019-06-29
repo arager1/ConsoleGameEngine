@@ -1,15 +1,9 @@
 
-SET(EXENAME AbstractGame)
+SET(LIBNAME AbstractGame)
 
 SET(SOURCES AbstractGame.hpp 
-			AbstractGame.cpp 
-			main.cpp)
+			AbstractGame.cpp)
 
-ADD_EXECUTABLE(${EXENAME} ${SOURCES})
-
-TARGET_INCLUDE_DIRECTORIES(${EXENAME} PUBLIC 
-						   ${PROJECT_SOURCE_DIR}/Source/IntegralMath/PointerLogic)
-
-TARGET_LINK_LIBRARIES(${EXENAME} PointerLogic)
+ADD_LIBRARY(${LIBNAME} ${SOURCES})
 
 ADD_SUBDIRECTORY(Test)
