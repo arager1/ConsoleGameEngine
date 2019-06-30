@@ -8,15 +8,13 @@
 namespace Engine
 {
 
-// class ConsoleGame;
 
 }
 
 int main()
 {	
 	{	// Game is constructed
-		std::unique_ptr<Engine::AbstractGame> game = std::move(
-			IntegralMath::PointerLogic::makeUnique<Engine::ConsoleGame>());
+		auto game = std::move(Engine::makeConsoleGame());
 
 		game->init();
 
