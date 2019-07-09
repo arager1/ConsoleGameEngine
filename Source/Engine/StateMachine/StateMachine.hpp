@@ -37,6 +37,8 @@ public:
 	{
 		auto temp = std::move(m_currentState);
 
+		// m_currentState is invalid between these calls
+
 		m_currentState = std::move(m_currentState->recieve(std::move(event)));
 
 		return ((temp == m_currentState) ? Status::Idle : Status::Transition);
