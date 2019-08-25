@@ -5,13 +5,18 @@ SET(SOURCES main.cpp)
 
 ADD_EXECUTABLE(${EXENAME} ${SOURCES})
 
-MESSAGE(${CMAKE_SOURCE_DIR})
-
 TARGET_INCLUDE_DIRECTORIES(${EXENAME} PUBLIC 
 						   ${PROJECT_SOURCE_DIR}/Source/Engine/Game 
-						   ${PROJECT_SOURCE_DIR}/Source/IntegralMath/PointerLogic 
-						   ${CMAKE_SOURCE_DIR}/Source/ConsoleGame)
+						   ${PROJECT_SOURCE_DIR}/Source/IntegralMath/PointerLogic)
 
-TARGET_LINK_LIBRARIES(${EXENAME} AbstractGame PointerLogic ConsoleGame)
+TARGET_LINK_LIBRARIES(${EXENAME} AbstractGame PointerLogic)
+
+IF (NOT ENGINE_ONLY_MODE)
+	TARGET_INCLUDE_DIRECTORIES(${EXENAME} PUBLIC ${CMAKE_SOURCE_DIR}/Source/ConsoleGame)
+	TARGET_LINK_LIBRARIES(${EXENAME} ConsoleGame)
+ELSE()
+	TARGET_INCLUDE_DIRECTORIES(${EXENAME} PUBLIC ${PROJECT_SOURCE_DIR}/Source/RandomDistribution/CatagoricalDistribution)
+	TARGET_LINK_LIBRARIES(${EXENAME} CatagoricalDistribution)
+ENDIF()
 
 ADD_SUBDIRECTORY(Test)

@@ -1,3 +1,3 @@
 
 
-ADD_SUBDIRECTORY(Distributions)
+ADD_SUBDIRECTORY(CatagoricalDistribution)

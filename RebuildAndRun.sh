@@ -1,39 +1,54 @@
 #!/bin/bash
 
-source_dir=$(dirname "$0")
-build_dir=$source_dir/../Build
-exe_path=$build_dir/bin/ConsoleGame
+root_dir=$(dirname "$0")
+cmake_source_dir=$root_dir
+build_dir=$root_dir/Build
+exe_path=$build_dir/bin
+exe_name=Game
 
-flag=${1:-d}
+echo "$0"
+
+
+buildTypeFlag=${1:-d}
+verboseFlag=${2:-q}
 
 cd $build_dir
 
-case $flag in
+case $buildTypeFlag in
 	-c|--clean) 
-		echo "Cleaning build"
+		echo "[$BASH_SOURCE] Cleaning build"
 		make clean;;
-	-d|--delta);; # Do nothing
+	-d|--delta)
+		echo "[$BASH_SOURCE] Delta build";;
 esac
 
-echo "Running CMake"
-cmake $source_dir
+echo "[$BASH_SOURCE] Running CMake"
+cmake $cmake_source_dir -DENGINE_ONLY_MODE:BOOL=True
 
 cmake_retval=$?
 
 if (( $cmake_retval == 0 )); then
-	echo "Building source"
-	make VERBOSE=1
+	echo "[$BASH_SOURCE] Building source"
+	case $verboseFlag in
+		-v|--verbose)
+			echo "[$BASH_SOURCE] Verbose build"
+			make VERBOSE=1;;
+		-q|--quiet)
+			echo "[$BASH_SOURCE] Quiet build"
+			make;;
+	esac
 else
-	echo "CMake failure"
+	echo "[$BASH_SOURCE] CMake failure"
 fi
 
 make_retval=$?
 
-cd $source_dir
+cd $cmake_source_dir
 
 if (( $make_retval == 0 )); then
-	echo "Executing binary"
-	./$exe_path
+	echo "[$BASH_SOURCE] Executing binary"
+	echo "[$BASH_SOURCE] $exe_path/$exe_name"
+	$exe_path/$exe_name
 else
-	echo "Build failure"
+	echo "[$BASH_SOURCE] Build failure"
 fi

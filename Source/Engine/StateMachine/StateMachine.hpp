@@ -44,7 +44,7 @@ public:
 		return ((temp == m_currentState) ? Status::Idle : Status::Transition);
 	}
 
-	inline std::shared_ptr<const AbstractState> getCurrentState()
+	inline const std::shared_ptr<const AbstractState> getCurrentState()
 	{
 		return m_currentState;
 	}

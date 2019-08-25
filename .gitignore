@@ -1,4 +1,5 @@
 
 Build/
-
 .DS_Store
+.vscode/
+Source/ideas.txt
