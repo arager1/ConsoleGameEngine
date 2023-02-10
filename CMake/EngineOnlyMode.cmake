@@ -1,0 +1,3 @@
+
+MESSAGE("[CMake] Building an Engine-Only Test Game")
+ADD_COMPILE_DEFINITIONS(ENGINE_ONLY_MODE)

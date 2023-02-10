@@ -1,6 +1,7 @@
 
-ADD_SUBDIRECTORY(IntegralMath)
-ADD_SUBDIRECTORY(UserInterface)
-ADD_SUBDIRECTORY(RandomDistribution)
-ADD_SUBDIRECTORY(TimeManagement)
 ADD_SUBDIRECTORY(Engine)
+ADD_SUBDIRECTORY(Mathematic)
+ADD_SUBDIRECTORY(RandomDistribution)
+
+# ADD_SUBDIRECTORY(Serial)
+# ADD_SUBDIRECTORY(UserInterface)

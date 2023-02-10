@@ -1,6 +1,0 @@
-
-ADD_SUBDIRECTORY(Fraction)
-ADD_SUBDIRECTORY(IntegerInfo)
-ADD_SUBDIRECTORY(IntegralFunctions)
-ADD_SUBDIRECTORY(OverflowDetector)
-ADD_SUBDIRECTORY(PointerLogic)

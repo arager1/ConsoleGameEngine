@@ -1,0 +1,3 @@
+
+MESSAGE("[CMake] Game-logging is Enabled")
+ADD_COMPILE_DEFINITIONS(LOGGING_ENABLED)
