@@ -8,7 +8,7 @@ Note: Don't follow RebuildAndRun.sh
 ##### Stable Components:
 N/A ;)
 
-##### Components wwhich have ever been tested:
+##### Components which have ever been tested:
 Engine/Main/
 Engine/Core/
 

@@ -10,13 +10,13 @@ SET(CMAKE_CXX_STANDARD 17)
 
 INCLUDE(CTest)
 
-INCLUDE(CMake/DownloadGoogleTest.cmake)
+# INCLUDE(CMake/DownloadGoogleTest.cmake)
 
 IF (ENGINE_ONLY_MODE)
 	INCLUDE(CMake/EngineOnlyMode.cmake)
 ENDIF()
 
-IF (LOGGING_ENABLED)
+IF (LOG_FILE)
 	INCLUDE(CMake/LoggingEnabled.cmake)
 ENDIF()
 

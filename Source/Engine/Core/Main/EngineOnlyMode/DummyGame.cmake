@@ -1,7 +1,7 @@
 
-SET(LIBNAME TestGame)
+SET(LIBNAME DummyGame)
 
-SET(SOURCES TestGame.hpp TestGame.cpp)
+SET(SOURCES EngineOnlyMode/DummyGame.hpp EngineOnlyMode/DummyGame.cpp)
 
 ADD_LIBRARY(${LIBNAME} ${SOURCES})
 

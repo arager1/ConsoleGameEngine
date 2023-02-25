@@ -41,6 +41,8 @@ public:
         }
 
         game.tearDown();
+
+        Logging::writeMessageBufferToLogFile();
     }
 
 private:

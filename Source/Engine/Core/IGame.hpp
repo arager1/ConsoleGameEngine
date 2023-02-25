@@ -6,13 +6,8 @@
 #include <vector>
 #include <queue>
 
-#ifdef LOGGING_ENABLED
-#include <string>
-#include <sstream>
-#include <fstream>
-#endif
-
 #include "GameEntity.hpp"
+#include "GameLogger.hpp"
 
 namespace Engine
 {
@@ -116,27 +111,13 @@ public:
         removeDestroyedEntities();
         addNewEntities();
 
-        #ifdef LOGGING_ENABLED
-        writeMessageBuffer();
-        #endif
-    }
-
-    void logMessage(const std::string& message)
-    {
-        #ifdef LOGGING_ENABLED
-        for (std::string line; std::getline(m_messageBuffer, line);) m_messageBuffer << line << '\n';
-        #endif
+        Logging::writeMessageBufferToLogFile();
     }
 
 private:
     std::unique_ptr<IGameWorld> m_gameWorld;
 
     std::vector<std::unique_ptr<GameEntity>> m_entities;
-
-    #ifdef LOGGING_ENABLED
-    std::stringstream m_messageBuffer;
-    std::ofstream m_loggingFile;
-    #endif
 
     virtual const IGameInputInterface& getGameInputInterface() const = 0;
     virtual IGameRenderInterface& getGameRenderInterface() = 0;
@@ -155,16 +136,6 @@ private:
             m_entities.push_back(std::move(newEntitiesBuffer.front()));
             newEntitiesBuffer.pop();
         }
-    }
-
-    void writeMessageBuffer()
-    {
-        #ifdef LOGGING_ENABLED
-        m_loggingFile.open("HeadlessGame.log", std::ofstream::out | std::ofstream::app);
-        for (std::string line; std::getline(m_messageBuffer, line);) m_loggingFile << line << '\n';
-        m_loggingFile.close();
-        m_messageBuffer.str(std::string{});
-        #endif
     }
 };
 

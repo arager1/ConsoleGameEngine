@@ -1,5 +1,5 @@
-#ifndef ENGINE_TESTGAME_HPP
-#define ENGINE_TESTGAME_HPP
+#ifndef ENGINE_DUMMYGAME_HPP
+#define ENGINE_DUMMYGAME_HPP
 
 #ifdef ENGINE_ONLY_MODE
 
@@ -9,6 +9,42 @@
 
 namespace Engine
 {
+
+class PlayerModelComponent : public IEntityModelComponent
+{
+    void update(const IGameWorld& gameWorld) override
+    {
+
+    }
+
+    bool isDestroyed() const override
+    {
+        return m_healthStat <= 0;
+    }
+private:
+    int m_healthStat {10};
+    int m_attackStat {5};
+};
+
+class PlayerInputComponent : public IEntityInputComponent
+{
+public:
+    void update(const EntityInputInterface&, IEntityModelComponent&) const override
+    {
+
+    }
+private:
+
+};
+
+class PlayerRenderComponent : public IEntityRenderComponent
+{
+    void update(const IEntityModelComponent&, EntityRenderInterface&) const override
+    {
+
+    }
+};
+
 
 class MonsterModelComponent : public IEntityModelComponent
 {
@@ -30,16 +66,10 @@ class MonsterInputComponent : public IEntityInputComponent
 public:
     void update(const EntityInputInterface&, IEntityModelComponent&) const override
     {
-        // if (m_idleCount >= 3) m_idling = false;
 
-
-
-        // if (m_idling) ++m_idleCount;
-        // else m_idleCount = 0;
     }
 private:
-    bool m_idling {true};
-    int m_idleCount {0};
+
 };
 
 class MonsterRenderComponent : public IEntityRenderComponent
@@ -51,7 +81,7 @@ class MonsterRenderComponent : public IEntityRenderComponent
 };
 
 
-class TestEntityInputInterface : public EntityInputInterface
+class DummyEntityInputInterface : public EntityInputInterface
 {
 public:
     enum class Direction {Up, Right, Down, Left, None};
@@ -59,7 +89,7 @@ public:
     Direction m_playerDirectionInput {Direction::None};
 };
 
-class TestInputInterface : public IGameInputInterface
+class DummyInputInterface : public IGameInputInterface
 {
     const EntityInputInterface& getEntityInputInterface() const final {return entityInputInterface;}
 
@@ -67,16 +97,16 @@ class TestInputInterface : public IGameInputInterface
     int mouseCoordinateY;
 
 private:
-    TestEntityInputInterface entityInputInterface;
+    DummyEntityInputInterface entityInputInterface;
 };
 
-class TestEntityRenderInterface : public EntityRenderInterface
+class DummyEntityRenderInterface : public EntityRenderInterface
 {
 public:
     bool m_entitiesVisible;
 };
 
-class TestRenderInterface : public IGameRenderInterface
+class DummyRenderInterface : public IGameRenderInterface
 {
     EntityRenderInterface& getEntityRenderInterface() final {return entityRenderInterface;}
 
@@ -84,24 +114,25 @@ class TestRenderInterface : public IGameRenderInterface
     int outputScreenHeight;
 
 private:
-    TestEntityRenderInterface entityRenderInterface;
+    DummyEntityRenderInterface entityRenderInterface;
 };
 
 
-class TestGameWorld : public IGameWorld
+class DummyGameWorld : public IGameWorld
 {
 public: 
     void updateWorldInputs(const IGameInputInterface& gameInputInterface) override
     {
-        std::cout << "Game World reading Game Inputs" << std::endl;
+        // std::cout << "World: CycleNo. " << cycleTimer << ": Game World reading Game Inputs" << std::endl;
     }
 
     void updateWorldModel() override
     {
-        std::cout << "Game World updating" << std::endl;
+        // std::cout << "World: CycleNo. " << cycleTimer << ": Game World updating" << std::endl;
 
         if (cycleTimer == 2)
         {
+            Logging::logMessage("Creating a Monster");
             IGameWorld::addEntity(std::move(std::make_unique<GameEntity>
             (
                 std::move(std::make_unique<MonsterInputComponent>()),
@@ -115,7 +146,7 @@ public:
 
     void updateWorldRender(IGameRenderInterface& gameRenderInterface) override
     {
-        std::cout << "Game World writing to Game Renderer" << std::endl;
+        // std::cout << "World: CycleNo. " << cycleTimer << ": Game World writing to Game Renderer" << std::endl;
     }
 
 private:
@@ -123,40 +154,40 @@ private:
 };
 
 
-class TestGame : public IGame
+class DummyGame : public IGame
 {
 public:
-    TestGame(std::unique_ptr<IGameWorld> gameWorld) : IGame(std::move(gameWorld)) {}
+    DummyGame(std::unique_ptr<IGameWorld> gameWorld) : IGame(std::move(gameWorld)) {}
     
 	void init() final
     {
-        logMessage("Initializing game");
+        Logging::logMessage("Game: Initializing game");
     }
 
     void tearDown() final
     {
-        logMessage("Tearing down game");
+        Logging::logMessage("Game: Tearing down game");
     }
 
     bool quitGame() final
     {
         if (cycleCount++ >= 10)
         {
-            logMessage("Quit condition reached");
+            Logging::logMessage("Game: Quit condition reached");
             return true;
         }
         else return false;
     }
 
-    const IGameInputInterface& getGameInputInterface() const final {return m_testInputInterface;}
+    const IGameInputInterface& getGameInputInterface() const final {return m_dummyInputInterface;}
 
-    IGameRenderInterface& getGameRenderInterface() final {return m_testRenderInterface;}
+    IGameRenderInterface& getGameRenderInterface() final {return m_dummyRenderInterface;}
 
 private:
     int cycleCount {0};
 
-    TestInputInterface m_testInputInterface;
-    TestRenderInterface m_testRenderInterface;
+    DummyInputInterface m_dummyInputInterface;
+    DummyRenderInterface m_dummyRenderInterface;
 };
 
 
@@ -165,4 +196,4 @@ private:
 
 #endif // ENGINE_ONLY_MODE
 
-#endif // ENGINE_TESTGAME_HPP
+#endif // ENGINE_DUMMYGAME_HPP
